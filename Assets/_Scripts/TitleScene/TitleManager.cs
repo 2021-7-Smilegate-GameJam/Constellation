@@ -14,6 +14,8 @@ public class TitleManager : MonoBehaviour
     public Slider volume;
     public GameObject panel;
 
+    public AudioManager audioManager;
+
     bool isSoundOn;
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class TitleManager : MonoBehaviour
    
         volume.value = 0.5f;
         panel.SetActive(false);
+        audioManager.GetComponent<AudioManager>();
     }
 
     public void SoundOnOffChange()
@@ -30,6 +33,8 @@ public class TitleManager : MonoBehaviour
         isSoundOn = !isSoundOn;
         soundOn.interactable = !isSoundOn;
         soundOff.interactable = isSoundOn;
+        audioManager.SoundOnOff();
+        volume.interactable = isSoundOn;
     }
 
     public void PanelOnOffChange()
