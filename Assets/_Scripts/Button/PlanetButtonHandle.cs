@@ -18,14 +18,20 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
     public void OnDrag(PointerEventData _eventData)
     {
         currentTouchPos = _eventData.position;
+        Vector2 dirVec = currentTouchPos - startTouchPos;
+        Vector2 normDirVec = dirVec.normalized;
+        float distance = (currentTouchPos - startTouchPos).sqrMagnitude;
 
-        if (currentTouchPos.y > startTouchPos.y)
+        if (distance > 50f)
         {
-            Debug.Log("점프");
-        }
-        else if (currentTouchPos.y < startTouchPos.y)
-        {
-            Debug.Log("슬라이드");
+            if (0.9f < normDirVec.y && normDirVec.y <= 1f)
+            {
+                Debug.Log("점프");
+            }
+            else if (-1f <= normDirVec.y && normDirVec.y < -0.9f)
+            {
+                Debug.Log("슬라이드");
+            }
         }
     }
 
@@ -37,6 +43,8 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
     public void OnPointerUp(PointerEventData _eventData)
     {
         currentAtkPos = _eventData.position;
+        Debug.Log(currentAtkPos);
+        Debug.Log(startTouchPos);
 
         if((currentAtkPos - startTouchPos).sqrMagnitude < 1f)
         {
