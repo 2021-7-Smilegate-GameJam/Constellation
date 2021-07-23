@@ -13,6 +13,7 @@ public class PlanetButtonSet : MonoBehaviour
    
     [SerializeField] private GameObject renderImg;
     [SerializeField] private StageModel temp;
+    [SerializeField] private Image gageAmount;
 
     private void Awake()
     {
@@ -21,16 +22,14 @@ public class PlanetButtonSet : MonoBehaviour
 
         buttonRect = GetComponent<RectTransform>();
         radius = buttonRect.rect.width / 2;
+
+        gageAmount.fillAmount = 0;
     }
 
     private void Start()
     {
         RenderObstacle();
-    }
-
-    private void Update()
-    {
-        buttonRect.Rotate(Vector3.forward * 6 * Time.deltaTime);
+        StartCoroutine(Rotate());
     }
 
     private void RenderObstacle()
@@ -64,6 +63,18 @@ public class PlanetButtonSet : MonoBehaviour
         {
             obstaclePosList.Add(xPos);
         }
+    }
+
+    private IEnumerator Rotate()
+    {
+        while(gageAmount.fillAmount < 1)
+        {
+            buttonRect.Rotate(Vector3.forward * 6 * Time.deltaTime);
+            gageAmount.fillAmount += (1f / 60f) * Time.deltaTime;
+
+            yield return null;
+        }
+
     }
 }
 
