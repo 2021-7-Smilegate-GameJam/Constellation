@@ -14,6 +14,7 @@ public class TilemapLoop : MonoBehaviour
     private int last_x;
     private int first_x = -6;
     private float movement_stack = 0;
+    private bool currentstageclear = false;
 
     public void get_stagemodel(StageModel stage)
     {
@@ -101,10 +102,16 @@ public class TilemapLoop : MonoBehaviour
         {
             Movetilemap();
         }
-      
+      else if(transform.GetComponent<obstruction>().timer == 65 &&currentstageclear!=true)
+        {
+            stageclear();
+         
+            currentstageclear = true;
+        }
     }
     public void stageclear()
     {
+      
         StageClear.StageCleardata.stages.Add(stage);
     }
 }

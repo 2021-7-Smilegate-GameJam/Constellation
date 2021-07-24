@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee838bfbb34834a913d77c820c5a8e, type: 3}
   m_Name: 1Stage
   m_EditorClassIdentifier: 
-  rollingSpeed: 1
+  rollingSpeed: 5
   objectPositions:
   - 1
   - 3
