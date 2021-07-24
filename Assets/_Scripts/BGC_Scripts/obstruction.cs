@@ -12,6 +12,9 @@ public class obstruction : MonoBehaviour
     List<obstruction_struct> spawn_data;
     List<GameObject> spawned_object;
 
+    public List<obstruction_struct> SpawnData => spawn_data;
+    public List<GameObject> SpawnedObject => spawned_object;
+
     public float timer;
 
     public void Awake()
