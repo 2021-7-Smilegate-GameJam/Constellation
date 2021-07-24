@@ -14,6 +14,7 @@ public class TitleManager : MonoBehaviour
     public Slider volume;
     public GameObject panel;
     public Image background;
+    public GameObject stageSelect;
 
     public AudioManager audioManager;
     bool isSoundOn = true;
@@ -54,6 +55,8 @@ public class TitleManager : MonoBehaviour
     {
         Debug.Log("SceneMove");
         //SceneManager.LoadScene("KimSM");
+        Instantiate(stageSelect);
+        transform.parent.gameObject.SetActive(false);
     }
 
     IEnumerator ButtonActive()

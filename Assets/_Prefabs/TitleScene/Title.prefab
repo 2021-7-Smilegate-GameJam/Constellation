@@ -1494,6 +1494,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2090646133486107970}
     - target: {fileID: 480509727157316517, guid: f234f81e3327b794f9103e5828810620, type: 3}
+      propertyPath: stageSelect
+      value: 
+      objectReference: {fileID: 3293573724445685304, guid: 1801fdf138306e44690233ea1f06c30e, type: 3}
+    - target: {fileID: 480509727157316517, guid: f234f81e3327b794f9103e5828810620, type: 3}
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 7460123682593926051}
