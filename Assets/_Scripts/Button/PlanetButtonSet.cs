@@ -18,6 +18,7 @@ public class PlanetButtonSet : MonoBehaviour
     [SerializeField] private StageModel temp;
     [SerializeField] private Image gageAmount;
     [SerializeField] private obstruction obs;
+    [SerializeField] private RectTransform playerIcon;
 
     private List<obstruction_struct> obstaclceList = new List<obstruction_struct>();
 
@@ -34,6 +35,7 @@ public class PlanetButtonSet : MonoBehaviour
 
         gageAmount.fillAmount = 0;
 
+        playerIcon.position = buttonRect.position + Vector3.up * radius;
     }
 
     private void Start()

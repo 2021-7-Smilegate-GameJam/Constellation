@@ -279,6 +279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4da3bf760fcce4980334a9a6d5863e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1143271985 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6592167456286417706, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+  m_PrefabInstance: {fileID: 7526607920300020678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1417329006 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7526607921042778792, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
@@ -450,10 +455,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7526607921457284033, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526607921457284033, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526607921457284033, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526607921457284033, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526607921457284033, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -486
+      objectReference: {fileID: 0}
     - target: {fileID: 7526607921457284044, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
       propertyPath: obs
       value: 
       objectReference: {fileID: 918809930}
+    - target: {fileID: 7526607921457284044, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: playerIcon
+      value: 
+      objectReference: {fileID: 1143271985}
     - target: {fileID: 7526607921457284045, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
       propertyPath: playerAnim
       value: 
