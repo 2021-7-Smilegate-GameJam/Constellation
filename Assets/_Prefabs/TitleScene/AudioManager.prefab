@@ -43,8 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6982ac6454628c9459886ff9e89fb742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleManager: {fileID: 0}
   audioPool: {fileID: 0}
   Source1: {fileID: 0}
   Source2: {fileID: 0}
   Source3: {fileID: 0}
   Source4: {fileID: 0}
+  Source6: {fileID: 0}
+  Source7: {fileID: 0}
+  hp: 100
+  isSoundOn: 1
+  soundVolume: 0
