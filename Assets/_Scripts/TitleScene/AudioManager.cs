@@ -62,42 +62,40 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator SoundType1()
     {
-        
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source1.Play();
         Debug.Log("1");
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source2.Play();
         Debug.Log("2");
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source3.Play();
         Debug.Log("3");
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source4.Play();
         Debug.Log("4");
 
-        if(isSoundOn)
-            StartCoroutine("SoundType2");
+        StartCoroutine("SoundType2");
     }
 
     IEnumerator SoundType2()
     {
 
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source1.Play();
         Debug.Log("5");
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source6.Play();
         Debug.Log("6");
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source7.Play();
         Debug.Log("7");
-        yield return new WaitForSeconds(hp / 100 + 1.3f);
+        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
         Source4.Play();
         Debug.Log("8");
 
-        if (isSoundOn)
-            StartCoroutine("SoundType1");
+        StartCoroutine("SoundType1");
     }
 
     /*

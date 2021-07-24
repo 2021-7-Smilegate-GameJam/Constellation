@@ -5,22 +5,26 @@ using UnityEngine.UI;
 
 public class PlanetButtonSet : MonoBehaviour
 {
-    private float mapLength;        //¸Ê ÃÑ ±æÀÌ
-    private float radius;           //Çà¼º ¹İÁö¸§
+    private float mapLength;        //ë§µ ì´ ê¸¸ì´
+    private float radius;           //í–‰ì„± ë°˜ì§€ë¦„
 
-    private float currZAngle;       //ÇöÀç zÈ¸Àü°¢µµ
-    private float currFill;         //ÇöÀç fillamount;
+    private float currZAngle;       //í˜„ì¬ zíšŒì „ê°ë„
+    private float currFill;         //í˜„ì¬ fillamount;
   
-    private List<double> obstaclePosList = new List<double>();         //¿ÀºêÁ§Æ® x¸®½ºÆ®
+    private List<double> obstaclePosList = new List<double>();         //ì˜¤ë¸Œì íŠ¸ xë¦¬ìŠ¤íŠ¸
     private RectTransform buttonRect;
     
     [SerializeField] private GameObject renderImg;
     [SerializeField] private StageModel temp;
     [SerializeField] private Image gageAmount;
+    [SerializeField] private obstruction obs;
+    [SerializeField] private RectTransform playerIcon;
+
+    private List<obstruction_struct> obstaclceList = new List<obstruction_struct>();
 
     private void Awake()
     {
-        //½ºÅ×ÀÌÁö ¸ğµ¨¿¡¼­ Á¤º¸ ¹Ş¾Æ¿À±â
+        //ìŠ¤í…Œì´ì§€ ëª¨ë¸ì—ì„œ ì •ë³´ ë°›ì•„ì˜¤ê¸°
         GetStageModelObstaclePos(temp);
 
         buttonRect = GetComponent<RectTransform>();
@@ -30,6 +34,7 @@ public class PlanetButtonSet : MonoBehaviour
         currFill = 0;
 
         gageAmount.fillAmount = 0;
+        playerIcon.position = buttonRect.position + Vector3.up * radius;
     }
 
     private void Start()
@@ -43,19 +48,22 @@ public class PlanetButtonSet : MonoBehaviour
         foreach(var obj in obstaclePosList)
         {
             var neObj = Instantiate(renderImg, this.transform);
-            //À§Ä¡ Á¶Á¤
+            //ìœ„ì¹˜ ì¡°ì •
             neObj.GetComponent<RectTransform>().localPosition = SetObstacleOnPlanet(obj);
-            //ÀÌ¹ÌÁö º¯°æ
+            //ì´ë¯¸ì§€ ë³€ê²½
+            newObj.GetComponent<Image>().sprite = obstaclceList[i].monster.GetComponent<SpriteRenderer>().sprite;
+            //íšŒì „ ì¶”ê°€
+            newObj.GetComponent<RectTransform>().Rotate(Vector3.forward * GetTheta(obstaclePosList[i]) * -1f);
 
-            //È¸Àü Ãß°¡
+            //íšŒì „ ì¶”ê°€
         }
     }
 
-    //Á÷¼± ÁÂÇ¥¸¦ ¿øÁÂÇ¥(? ¸»ÀÌ ÀÌ»óÇÏ±ä ÇÑµ¥ )·Î º¯È¯
-    //±âÁØÀº Àå¾Ö¹°ÀÇ Áß¾Ó
+    //ì§ì„  ì¢Œí‘œë¥¼ ì›ì¢Œí‘œ(? ë§ì´ ì´ìƒí•˜ê¸´ í•œë° )ë¡œ ë³€í™˜
+    //ê¸°ì¤€ì€ ì¥ì• ë¬¼ì˜ ì¤‘ì•™
     private Vector2 SetObstacleOnPlanet(double _previousX)
     {
-        double ratio = (_previousX - 0) / 60;            //±æÀÌ ºñÀ²
+        double ratio = (_previousX - 0) / 60;            //ê¸¸ì´ ë¹„ìœ¨
         float theta = (float)ratio * 360f;
         float xPos = radius * Mathf.Sin(theta * Mathf.Deg2Rad);
         float yPos = radius * Mathf.Cos(theta * Mathf.Deg2Rad);
@@ -73,7 +81,7 @@ public class PlanetButtonSet : MonoBehaviour
 
     private IEnumerator Rotate()
     {
-        //Àç½ÃÀÛ½Ã
+        //ì¬ì‹œì‘ì‹œ
         buttonRect.rotation = Quaternion.Euler(0, 0, currZAngle);
         gageAmount.fillAmount = currFill;
 
