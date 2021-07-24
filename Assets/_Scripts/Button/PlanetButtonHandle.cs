@@ -3,17 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum EState { E_IDLE, E_JUMP, E_ATTACK, E_SLIDE };
+
+
 public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     private Vector2 startTouchPos;
     private Vector2 currentTouchPos;
     private Vector2 currentAtkPos;
 
-    private StateMachine stateMachine;
+    private Animator playerAnim;
+
+    public static EState eState;
+    public EState eState_
+    {
+        get
+        {
+            return eState;
+        }
+        set
+        {
+            if (!eState.Equals(EState.E_IDLE) || eState.Equals(value)) return;
+            if (eState.Equals(EState.E_JUMP) && value.Equals(EState.E_IDLE)) return;            //점프중에 스테이트가 기본으로 바뀌면 리턴 충돌에서 처리해야 할 것 같다.
+
+            ExitState(eState);
+            eState = value;
+            EnterState(eState);
+        }
+    }
+
 
     void Awake()
     {
-        stateMachine = new StateMachine(new IdleState());
+        eState_ = EState.E_IDLE;
     }
 
     public void OnPointerDown(PointerEventData _eventData)
@@ -33,18 +55,18 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
         {
             if (0.9f < normDirVec.y && normDirVec.y <= 1f)
             {
-                stateMachine.SetState(new JumpState());
+                eState_ = EState.E_JUMP;
             }
             else if (-1f <= normDirVec.y && normDirVec.y < -0.9f)
             {
-                stateMachine.SetState(new SlideState());
+                eState_ = EState.E_SLIDE;
             }
         }
     }
 
     public void OnEndDrag(PointerEventData _eventData)
     {
-        stateMachine.SetState(new IdleState());
+        eState_ = EState.E_IDLE;
     }
 
     public void OnPointerUp(PointerEventData _eventData)
@@ -53,75 +75,123 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
 
         if((currentAtkPos - startTouchPos).sqrMagnitude < 1f)
         {
-            stateMachine.SetState(new AttackState());
+            eState_ = EState.E_ATTACK;
+        }
+    }
+
+    public void EnterState(EState _eState)
+    {
+        switch(_eState)
+        {
+            case EState.E_IDLE:
+                break;
+            case EState.E_JUMP:
+                Debug.Log("점프");
+                //playerAnim.SetTrigger("jump");
+                break;
+            case EState.E_ATTACK:
+                Debug.Log("공격");
+                //playerAnim.SetTrigger("attack");        //현재 파라미터는 없지만 임의로 설정
+                break;
+            case EState.E_SLIDE:
+                Debug.Log("슬라이드");
+                //playerAnim.SetTrigger("sliding");
+                break;
+            default:
+                break;
+        }
+    }
+
+    //exit에서 할게 있나
+    public void ExitState(EState _eState)
+    {
+        switch (_eState)
+        {
+            case EState.E_IDLE:
+                break;
+            case EState.E_JUMP:
+                break;
+            case EState.E_ATTACK:
+                break;
+            case EState.E_SLIDE:
+                break;
+            default:
+                break;
         }
     }
 }
 
-
-#region 상태 변화.. 그냥 심심해서
-public enum EState { E_IDLE, E_JUMP, E_ATTACK, E_SLIDE };
+//폐기 처분
 //상세 조건은 아직
 
-public abstract class IState
-{
-    public abstract void OnEnter();
-    public virtual void OnUpdate() { }
-    public virtual void OnExit() { }
-}
+//public abstract class IState
+//{
+//    public abstract void OnEnter();
+//    public virtual void OnUpdate() { }
+//    public virtual void OnExit() { }
+//}
 
-public class StateMachine
-{
-    public IState state { get; private set; }
+//public class StateMachine
+//{
+//    public enum EState { E_IDLE, E_JUMP, E_ATTACK, E_SLIDE };
 
-    public StateMachine(IState _state)
-    {
-        this.state = _state;
-    }
+//    public IState state { get; private set; }
+//    public EState eState { get; private set; }
 
-    public void SetState(IState _state)
-    {
-        if (state.Equals(_state))
-        {
-            return;
-        }
+//    public StateMachine(IState _state, EState _eState)
+//    {
+//        this.state = _state;
+//        this.eState = _eState;
+//    }
 
-        _state.OnExit();
-        this.state = _state;
-        state.OnEnter();
-    }
-}
+//    public void SetState(IState _state, EState _eState)
+//    {
+//        if (state.Equals(_state))
+//        {
+//            return;
+//        }
 
-public class IdleState : IState
-{
-    public override void OnEnter()
-    {
-        Debug.Log("원상태");
-    }
-}
+//        _state.OnExit();
 
-public class JumpState : IState
-{
-    public override void OnEnter()
-    {
-        Debug.Log("점프");
-    }
-}
+//        this.state = _state;
+//        this.eState = _eState;
 
-public class AttackState : IState
-{
-    public override void OnEnter()
-    {
-        Debug.Log("공격");
-    }
-}
+//        state.OnEnter();
+//    }
+//}
 
-public class SlideState : IState
-{
-    public override void OnEnter()
-    {
-        Debug.Log("슬라이드");
-    }
-}
+//public class IdleState : IState
+//{
+//    public override void OnEnter()
+//    {
+//        Debug.Log("원상태");
+//    }
+//}
 
-#endregion
+//public class JumpState : IState
+//{
+//    public override void OnEnter()
+//    {
+
+//        Debug.Log("점프");
+//    }
+//}
+
+//public class AttackState : IState
+//{
+//    public override void OnEnter()
+//    {
+//        Debug.Log("공격");
+//    }
+//}
+
+//public class SlideState : IState
+//{
+//    public override void OnEnter()
+//    {
+//        Debug.Log("슬라이드");
+//    }
+//}
+
+
+
