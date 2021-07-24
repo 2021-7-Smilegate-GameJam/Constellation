@@ -320,8 +320,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 7600114072883145061, guid: f4e531e20180ab048b659c6833de2d00, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -359,7 +359,7 @@ MonoBehaviour:
   temp: {fileID: 11400000, guid: 5f4c43dfb548eb7479e2e00a16b903e7, type: 2}
   gageAmount: {fileID: 7526607920126733260}
   obs: {fileID: 0}
-  playerIcon: {fileID: 0}
+  playerIcon: {fileID: 6592167456286417706}
 --- !u!1 &7727224937988572243
 GameObject:
   m_ObjectHideFlags: 0

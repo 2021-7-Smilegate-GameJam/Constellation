@@ -12,7 +12,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
     private Vector2 currentTouchPos;
     private Vector2 currentAtkPos;
 
-    [SerializeField] private Animator playerAnim;       //³ªÁß¿¡ ±×³É find·Î Ã³¸®
+    public Animator playerAnim;       //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×³ï¿½ findï¿½ï¿½ Ã³ï¿½ï¿½
 
     public static EState eState;
     public EState eState_
@@ -112,7 +112,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
             eState_ = EState.E_IDLE;
     }
 
-    //exit¿¡¼­ ÇÒ°Ô ÀÖ³ª
+    //exitï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ ï¿½Ö³ï¿½
     public void ExitState(EState _eState)
     {
         switch (_eState)
@@ -131,8 +131,8 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
     }
 }
 
-//Æó±â Ã³ºÐ
-//»ó¼¼ Á¶°ÇÀº ¾ÆÁ÷
+//ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 //public abstract class IState
 //{
@@ -174,7 +174,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
 //{
 //    public override void OnEnter()
 //    {
-//        Debug.Log("¿ø»óÅÂ");
+//        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 //    }
 //}
 
@@ -183,7 +183,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
 //    public override void OnEnter()
 //    {
 
-//        Debug.Log("Á¡ÇÁ");
+//        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
 //    }
 //}
 
@@ -191,7 +191,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
 //{
 //    public override void OnEnter()
 //    {
-//        Debug.Log("°ø°Ý");
+//        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
 //    }
 //}
 
@@ -199,7 +199,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
 //{
 //    public override void OnEnter()
 //    {
-//        Debug.Log("½½¶óÀÌµå");
+//        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½");
 //    }
 //}
 

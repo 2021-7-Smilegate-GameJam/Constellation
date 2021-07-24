@@ -327,7 +327,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.02}
+  m_Offset: {x: -0.13197446, y: 0.01999998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -338,7 +338,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.82, y: 3.288781}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &4953736615007058406
 GameObject:
@@ -599,11 +599,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stage: {fileID: 11400000, guid: 5f4c43dfb548eb7479e2e00a16b903e7, type: 2}
   Bottomtile:
+  - {fileID: 11400000, guid: 7366b8dc98504be4898b9a6f5b553b67, type: 2}
+  - {fileID: 11400000, guid: 7366b8dc98504be4898b9a6f5b553b67, type: 2}
+  Toptile:
   - {fileID: 11400000, guid: 94e54e1baee49084197e5af402ae5eba, type: 2}
   - {fileID: 11400000, guid: e5587a23dbd1f6348a414f6ba38040b9, type: 2}
-  Toptile:
   - {fileID: 11400000, guid: a750b363ca68eb443b2216e74e8e5a71, type: 2}
-  - {fileID: 11400000, guid: 7366b8dc98504be4898b9a6f5b553b67, type: 2}
   tilemap: {fileID: 4953736615007058403}
   testfloat: 0
 --- !u!114 &965466980336141227
@@ -634,4 +635,9 @@ MonoBehaviour:
   stage: {fileID: 0}
   monster:
   - {fileID: 3891380730024352618, guid: 9c4c2567faa4f27438edcb923335941e, type: 3}
+  - {fileID: 3891380730024352618, guid: 95bb0b7a3ffeb2844839c12162197f32, type: 3}
+  - {fileID: 3891380730024352618, guid: f792dbe7b693dae438c37abe43be427d, type: 3}
+  - {fileID: 3891380730024352618, guid: d6696f9d53a0ab14b8dc64d5b2c53a14, type: 3}
+  - {fileID: 3891380730024352618, guid: 10292f74d24fb5047a9bb84b7fb8c447, type: 3}
+  - {fileID: 3891380730024352618, guid: 89083e8936d8f874a972b60163043920, type: 3}
   timer: 0

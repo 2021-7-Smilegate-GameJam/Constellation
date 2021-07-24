@@ -26,22 +26,21 @@ public class PlayerData : MonoBehaviour
     {
         if (collision.tag == "Obstruction")
         {
-            
             hp -= 1;
             StartCoroutine(damaged());
             if (hp == 0)
             {
-
-
+                Game_over();
             }
         }
       
     }
     public void Game_over()
     {
-        //½ÇÆĞ½Ã È¸Àü ¸ØÃß´Â ¸Ş¼­µå
-        //Å¸ÀÏ¸Ê,¹× ¿ÀºêÁ§Æ®ÀÌµ¿ Á¤Áö
-
+        //ì‹¤íŒ¨ì‹œ íšŒì „ ë©ˆì¶”ëŠ” ë©”ì„œë“œ
+        //íƒ€ì¼ë§µ,ë° ì˜¤ë¸Œì íŠ¸ì´ë™ ì •ì§€
+        FindObjectOfType<PlanetButtonSet>().StopRotate();
+        
     }
 
     IEnumerator damaged()

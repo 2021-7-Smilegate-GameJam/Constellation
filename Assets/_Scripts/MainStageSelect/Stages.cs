@@ -13,8 +13,8 @@ public struct StarModel
 
 public class Stages : Singleton<Stages>
 {
-    public GameObject stageManagerPrefab;
-    
+    public GameObject stageManagerPrefab, circleRenderPrefab;
+
     [SerializeField]
     private Button endButton;
     
@@ -100,5 +100,6 @@ public class Stages : Singleton<Stages>
             DrawLine(SelectStartStar());
         });
         StageButton.stageSelectionParent = transform.parent.gameObject;
+        StageButton.circleRenderMiniMap = circleRenderPrefab;
     }
 }
