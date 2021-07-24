@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,17 @@ public struct StarModel
 
 public class Stages : Singleton<Stages>
 {
-    public Button endButton;
-    public StageButton[] stageButtons;
-    private List<StarModel> clearedStages = new List<StarModel>();
+    [SerializeField]
+    private Button endButton;
+    
     [SerializeField]
     private LineRenderer lineRenderer;
+
+    [SerializeField]
+    private Text name;
+    
+    public StageButton[] stageButtons;
+    private List<StarModel> clearedStages = new List<StarModel>();
 
     public void AddStar(StarModel starModel)
     {
@@ -56,9 +63,39 @@ public class Stages : Singleton<Stages>
         DrawLine(closest);
     }
 
+    private string MakeName()
+    {
+        var name = "Zodiac";
+        var modifier = "Just";
+        if (clearedStages.Count > 3)
+        {
+            name = "Lights";
+        }
+        if (clearedStages.Count > 6)
+        {
+            name = "Light of the night sky";
+        }
+
+        if (clearedStages.Count > 10)
+        {
+            name = "MILKY WAY";
+        }
+
+        var modifiers = clearedStages.OrderBy(stage => stage.priority).ToArray();
+        var modifierStrings = modifiers.Where(stage => stage.priority == modifiers[0].priority).Select(stage => stage.modifier)
+            .ToArray();
+        modifier = modifierStrings[Random.Range(0, modifierStrings.Length)];
+
+        return $"{modifier} {name}";
+    }
+
     protected override void OnAwake()
     {
         base.OnAwake();
-        endButton.onClick.AddListener(() => DrawLine(SelectStartStar()));
+        endButton.onClick.AddListener(() =>
+        {
+            name.text = MakeName();
+            DrawLine(SelectStartStar());
+        });
     }
 }
