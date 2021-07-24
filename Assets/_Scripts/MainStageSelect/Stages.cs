@@ -13,14 +13,16 @@ public struct StarModel
 
 public class Stages : Singleton<Stages>
 {
+    public GameObject stageManagerPrefab;
+    
     [SerializeField]
     private Button endButton;
     
     [SerializeField]
-    private LineRenderer lineRenderer;
+    private LineRenderer lineRenderer; // 캔버스 하위에 달려있는 오브젝트는 안됨. 일반 오브젝트에 있는거 써야 렌더링 됨.
 
     [SerializeField]
-    private Text name;
+    private Text name; // 별자리 이름 보여줄 그것.
     
     public StageButton[] stageButtons;
     private List<StarModel> clearedStages = new List<StarModel>();
@@ -30,7 +32,7 @@ public class Stages : Singleton<Stages>
         clearedStages.Add(starModel);
     }
 
-    public StarModel SelectStartStar()
+    private StarModel SelectStartStar()
     {
         return clearedStages[Random.Range(0, clearedStages.Count)];
     }

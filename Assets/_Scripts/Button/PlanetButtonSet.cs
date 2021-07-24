@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlanetButtonSet : MonoBehaviour
 {
-    private float mapLength;        //ë§µ ì´ ê¸¸ì´
-    private float radius;           //í–‰ì„± ë°˜ì§€ë¦„
+    private float mapLength;        //¸Ê ÃÑ ±æÀÌ
+    private float radius;           //Çà¼º ¹İÁö¸§
 
-    private float currZAngle;       //í˜„ì¬ zíšŒì „ê°ë„
-    private float currFill;         //í˜„ì¬ fillamount;
+    private float currZAngle;       //ÇöÀç zÈ¸Àü°¢µµ
+    private float currFill;         //ÇöÀç fillamount;
   
-    private List<double> obstaclePosList = new List<double>();         //ì˜¤ë¸Œì íŠ¸ xë¦¬ìŠ¤íŠ¸
+    private List<double> obstaclePosList = new List<double>();         //¿ÀºêÁ§Æ® x¸®½ºÆ®
     private RectTransform buttonRect;
     
     [SerializeField] private GameObject renderImg;
@@ -24,7 +24,7 @@ public class PlanetButtonSet : MonoBehaviour
 
     private void Awake()
     {
-        //ìŠ¤í…Œì´ì§€ ëª¨ë¸ì—ì„œ ì •ë³´ ë°›ì•„ì˜¤ê¸°
+        //½ºÅ×ÀÌÁö ¸ğµ¨¿¡¼­ Á¤º¸ ¹Ş¾Æ¿À±â
         GetStageModelObstaclePos(temp);
 
         buttonRect = GetComponent<RectTransform>();
@@ -34,41 +34,50 @@ public class PlanetButtonSet : MonoBehaviour
         currFill = 0;
 
         gageAmount.fillAmount = 0;
+
         playerIcon.position = buttonRect.position + Vector3.up * radius;
     }
 
     private void Start()
     {
+        obstaclceList = obs.SpawnData;
         RenderObstacle();
         StartCoroutine(Rotate());
     }
 
     private void RenderObstacle()
     {
-        foreach(var obj in obstaclePosList)
+
+        for(int i = 0; i < obstaclePosList.Count; i++)
         {
-            var neObj = Instantiate(renderImg, this.transform);
-            //ìœ„ì¹˜ ì¡°ì •
-            neObj.GetComponent<RectTransform>().localPosition = SetObstacleOnPlanet(obj);
-            //ì´ë¯¸ì§€ ë³€ê²½
+            var newObj = Instantiate(renderImg, this.transform);
+            //À§Ä¡ Á¶Á¤
+            newObj.GetComponent<RectTransform>().localPosition = SetObstacleOnPlanet(obstaclePosList[i]);
+            //ÀÌ¹ÌÁö º¯°æ
             newObj.GetComponent<Image>().sprite = obstaclceList[i].monster.GetComponent<SpriteRenderer>().sprite;
-            //íšŒì „ ì¶”ê°€
+            //È¸Àü Ãß°¡
             newObj.GetComponent<RectTransform>().Rotate(Vector3.forward * GetTheta(obstaclePosList[i]) * -1f);
 
-            //íšŒì „ ì¶”ê°€
         }
     }
 
-    //ì§ì„  ì¢Œí‘œë¥¼ ì›ì¢Œí‘œ(? ë§ì´ ì´ìƒí•˜ê¸´ í•œë° )ë¡œ ë³€í™˜
-    //ê¸°ì¤€ì€ ì¥ì• ë¬¼ì˜ ì¤‘ì•™
+    //Á÷¼± ÁÂÇ¥¸¦ ¿øÁÂÇ¥(? ¸»ÀÌ ÀÌ»óÇÏ±ä ÇÑµ¥ )·Î º¯È¯
+    //±âÁØÀº Àå¾Ö¹°ÀÇ Áß¾Ó
     private Vector2 SetObstacleOnPlanet(double _previousX)
     {
-        double ratio = (_previousX - 0) / 60;            //ê¸¸ì´ ë¹„ìœ¨
-        float theta = (float)ratio * 360f;
+        float theta = GetTheta(_previousX);
         float xPos = radius * Mathf.Sin(theta * Mathf.Deg2Rad);
         float yPos = radius * Mathf.Cos(theta * Mathf.Deg2Rad);
 
         return new Vector2(xPos, yPos);
+    }
+
+    private float GetTheta(double _previousX)
+    {
+        double ratio = (_previousX - 0) / 60;            //±æÀÌ ºñÀ²
+        float theta = (float)ratio * 360f;
+
+        return theta;
     }
 
     public void GetStageModelObstaclePos(StageModel _stageModel)
@@ -81,7 +90,7 @@ public class PlanetButtonSet : MonoBehaviour
 
     private IEnumerator Rotate()
     {
-        //ì¬ì‹œì‘ì‹œ
+        //Àç½ÃÀÛ½Ã
         buttonRect.rotation = Quaternion.Euler(0, 0, currZAngle);
         gageAmount.fillAmount = currFill;
 
