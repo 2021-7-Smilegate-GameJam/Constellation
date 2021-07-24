@@ -43,10 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa0ae023dbaacb43a14ad5a71d76cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setting: {fileID: 7930665830759537910, guid: 14b8cbf56e720f34ebb79dbe5bffdcde, type: 3}
-  gamestart: {fileID: 3622619516869327611, guid: f40505966dfb5584bb60e524d350892b, type: 3}
-  soundOn: {fileID: 332714164082603093, guid: 81d9705dfc56df642a3172b369c69058, type: 3}
-  soundOff: {fileID: 2151862697256760779, guid: 479e22e55e31fea48a6e86a2221a366e, type: 3}
-  volume: {fileID: 7775658955846129308, guid: f9f28f3af229eaf439c54d48f8845f65, type: 3}
-  panel: {fileID: 8516872835703750732, guid: dd28d3218d4e8c742a64f9839c3664ff, type: 3}
-  audioManager: {fileID: 3103013674448170446, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
+  setting: {fileID: 0}
+  gamestart: {fileID: 0}
+  soundOn: {fileID: 0}
+  soundOff: {fileID: 0}
+  volume: {fileID: 0}
+  panel: {fileID: 0}
+  background: {fileID: 0}
+  audioManager: {fileID: 0}
