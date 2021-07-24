@@ -17,8 +17,8 @@ public class PlanetButtonSet : MonoBehaviour
     [SerializeField] private GameObject renderImg;
     [SerializeField] private StageModel temp;
     [SerializeField] private Image gageAmount;
+    [SerializeField] private obstruction obs;
 
-    obstruction obs;
     private List<obstruction_struct> obstaclceList = new List<obstruction_struct>();
 
     private void Awake()
@@ -34,7 +34,6 @@ public class PlanetButtonSet : MonoBehaviour
 
         gageAmount.fillAmount = 0;
 
-        obs = gameObject.AddComponent<obstruction>();     
     }
 
     private void Start()
@@ -53,7 +52,7 @@ public class PlanetButtonSet : MonoBehaviour
             //위치 조정
             newObj.GetComponent<RectTransform>().localPosition = SetObstacleOnPlanet(obstaclePosList[i]);
             //이미지 변경
-            //newObj.GetComponent<Image>().sprite = obstaclceList[i].monster.GetComponent<SpriteRenderer>().sprite;
+            newObj.GetComponent<Image>().sprite = obstaclceList[i].monster.GetComponent<SpriteRenderer>().sprite;
             //회전 추가
             newObj.GetComponent<RectTransform>().Rotate(Vector3.forward * GetTheta(obstaclePosList[i]) * -1f);
 
