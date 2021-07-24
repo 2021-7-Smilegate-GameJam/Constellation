@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class PlayerData : MonoBehaviour
 {
-    public enum Playerstate
+    Animator cha_ani;
+   
+    public void Start()
     {
-        run,
-        jump,
-        sliding,
-        attack
+        cha_ani = transform.GetComponent<Animator>();
     }
-    public Playerstate current_state;
+    
     public int hp = 5;
     private Vector2 touchBeganPos;
     private Vector2 touchEndedPos;
@@ -32,6 +31,10 @@ public class PlayerData : MonoBehaviour
         }
         
     }
-
+    public void Jump()
+    {
+        cha_ani.SetTrigger("Jump");
+    }
+    
     //swipe and touch...
 }

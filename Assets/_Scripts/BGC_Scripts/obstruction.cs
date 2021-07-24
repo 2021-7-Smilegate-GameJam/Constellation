@@ -6,7 +6,7 @@ public class obstruction : MonoBehaviour
 {
     StageModel stage;
     
-   public GameObject[] monster;
+    public GameObject[] monster;
     //need monster object
     List<obstruction_struct> spawn_data;
     List<GameObject> spawned_object;
