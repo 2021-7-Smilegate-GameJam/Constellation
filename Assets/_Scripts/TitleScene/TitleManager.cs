@@ -17,7 +17,6 @@ public class TitleManager : MonoBehaviour
 
     public AudioManager audioManager;
     bool isSoundOn = true;
-    bool buttonActive = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +66,6 @@ public class TitleManager : MonoBehaviour
 
         setting.gameObject.SetActive(true);
         gamestart.gameObject.SetActive(true);
-        buttonActive = true;
         
     }
 
