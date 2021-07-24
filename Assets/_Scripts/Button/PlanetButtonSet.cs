@@ -18,6 +18,9 @@ public class PlanetButtonSet : MonoBehaviour
     [SerializeField] private StageModel temp;
     [SerializeField] private Image gageAmount;
 
+    obstruction obs;
+    private List<obstruction_struct> obstaclceList = new List<obstruction_struct>();
+
     private void Awake()
     {
         //스테이지 모델에서 정보 받아오기
@@ -30,24 +33,30 @@ public class PlanetButtonSet : MonoBehaviour
         currFill = 0;
 
         gageAmount.fillAmount = 0;
+
+        obs = gameObject.AddComponent<obstruction>();     
     }
 
     private void Start()
     {
+        obstaclceList = obs.SpawnData;
         RenderObstacle();
         StartCoroutine(Rotate());
     }
 
     private void RenderObstacle()
     {
-        foreach(var obj in obstaclePosList)
-        {
-            var neObj = Instantiate(renderImg, this.transform);
-            //위치 조정
-            neObj.GetComponent<RectTransform>().localPosition = SetObstacleOnPlanet(obj);
-            //이미지 변경
 
+        for(int i = 0; i < obstaclePosList.Count; i++)
+        {
+            var newObj = Instantiate(renderImg, this.transform);
+            //위치 조정
+            newObj.GetComponent<RectTransform>().localPosition = SetObstacleOnPlanet(obstaclePosList[i]);
+            //이미지 변경
+            //newObj.GetComponent<Image>().sprite = obstaclceList[i].monster.GetComponent<SpriteRenderer>().sprite;
             //회전 추가
+            newObj.GetComponent<RectTransform>().Rotate(Vector3.forward * GetTheta(obstaclePosList[i]) * -1f);
+
         }
     }
 
@@ -55,12 +64,19 @@ public class PlanetButtonSet : MonoBehaviour
     //기준은 장애물의 중앙
     private Vector2 SetObstacleOnPlanet(double _previousX)
     {
-        double ratio = (_previousX - 0) / 60;            //길이 비율
-        float theta = (float)ratio * 360f;
+        float theta = GetTheta(_previousX);
         float xPos = radius * Mathf.Sin(theta * Mathf.Deg2Rad);
         float yPos = radius * Mathf.Cos(theta * Mathf.Deg2Rad);
 
         return new Vector2(xPos, yPos);
+    }
+
+    private float GetTheta(double _previousX)
+    {
+        double ratio = (_previousX - 0) / 60;            //길이 비율
+        float theta = (float)ratio * 360f;
+
+        return theta;
     }
 
     public void GetStageModelObstaclePos(StageModel _stageModel)
