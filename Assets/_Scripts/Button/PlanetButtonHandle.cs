@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 public enum EState { E_IDLE, E_JUMP, E_ATTACK, E_SLIDE };
 
 
-public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     private Vector2 startTouchPos;
     private Vector2 currentTouchPos;
     private Vector2 currentAtkPos;
 
-    private Animator playerAnim;
+    [SerializeField] private Animator playerAnim;       //나중에 그냥 find로 처리
 
     public static EState eState;
     public EState eState_
@@ -23,11 +23,11 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
         }
         set
         {
-            if (!eState.Equals(EState.E_IDLE) || eState.Equals(value)) return;
-            if (eState.Equals(EState.E_JUMP) && value.Equals(EState.E_IDLE)) return;            //점프중에 스테이트가 기본으로 바뀌면 리턴 충돌에서 처리해야 할 것 같다.
+            if (eState.Equals(value)) return;
 
             ExitState(eState);
             eState = value;
+
             EnterState(eState);
         }
     }
@@ -64,42 +64,52 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
         }
     }
 
-    public void OnEndDrag(PointerEventData _eventData)
-    {
-        eState_ = EState.E_IDLE;
-    }
-
     public void OnPointerUp(PointerEventData _eventData)
     {
         currentAtkPos = _eventData.position;
 
-        if((currentAtkPos - startTouchPos).sqrMagnitude < 1f)
+        if ((currentAtkPos - startTouchPos).sqrMagnitude < 0.1f)
         {
             eState_ = EState.E_ATTACK;
         }
+        else
+        {
+            eState_ = EState.E_IDLE;
+        }
+
     }
 
     public void EnterState(EState _eState)
     {
-        switch(_eState)
+        switch (_eState)
         {
             case EState.E_IDLE:
+
                 break;
             case EState.E_JUMP:
-                Debug.Log("점프");
-                //playerAnim.SetTrigger("jump");
+                StartCoroutine(Action("jump"));
                 break;
             case EState.E_ATTACK:
-                Debug.Log("공격");
-                //playerAnim.SetTrigger("attack");        //현재 파라미터는 없지만 임의로 설정
+                StartCoroutine(Action("attack"));
                 break;
             case EState.E_SLIDE:
-                Debug.Log("슬라이드");
-                //playerAnim.SetTrigger("sliding");
+                StartCoroutine(Action("sliding"));
                 break;
             default:
                 break;
         }
+    }
+
+    IEnumerator Action(string _paramName)
+    {
+        Debug.Log(_paramName);
+        playerAnim.SetTrigger(_paramName);
+
+        //yield return new WaitUntil(() => playerAnim.IsInTransition(0));
+        yield return new WaitForSeconds(0.1f);
+
+        if(eState == EState.E_ATTACK)
+            eState_ = EState.E_IDLE;
     }
 
     //exit에서 할게 있나
