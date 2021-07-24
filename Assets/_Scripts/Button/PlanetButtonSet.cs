@@ -7,6 +7,9 @@ public class PlanetButtonSet : MonoBehaviour
 {
     private float mapLength;        //맵 총 길이
     private float radius;           //행성 반지름
+
+    private float currZAngle;       //현재 z회전각도
+    private float currFill;         //현재 fillamount;
   
     private List<double> obstaclePosList = new List<double>();         //오브젝트 x리스트
     private RectTransform buttonRect;
@@ -22,6 +25,9 @@ public class PlanetButtonSet : MonoBehaviour
 
         buttonRect = GetComponent<RectTransform>();
         radius = buttonRect.rect.width / 2;
+
+        currZAngle = 0;
+        currFill = 0;
 
         gageAmount.fillAmount = 0;
     }
@@ -67,15 +73,29 @@ public class PlanetButtonSet : MonoBehaviour
 
     private IEnumerator Rotate()
     {
+        //재시작시
+        buttonRect.rotation = Quaternion.Euler(0, 0, currZAngle);
+        gageAmount.fillAmount = currFill;
+
         while(gageAmount.fillAmount < 1)
-        {
+        { 
             buttonRect.Rotate(Vector3.forward * 6 * Time.deltaTime);
             gageAmount.fillAmount += (1f / 60f) * Time.deltaTime;
+
+            currZAngle = buttonRect.rotation.eulerAngles.z;
+            currFill = gageAmount.fillAmount;
 
             yield return null;
         }
 
+        buttonRect.rotation = Quaternion.identity;
     }
+
+    public void StopRotate()
+    {
+        StopCoroutine(Rotate());
+    }
+
 }
 
 
