@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class obstruction_struct : MonoBehaviour
+public class obstruction_struct 
 {
    public GameObject monster;
    public double vectorx;
@@ -12,6 +12,12 @@ public class obstruction_struct : MonoBehaviour
     {
 
     }
+    /// <summary>
+    /// objecttype  0=default 1=fly 2=monster 
+    /// </summary>
+    /// <param name="monster"></param>
+    /// <param name="vectorx"></param>
+    /// <param name="objecttype"></param>
     public obstruction_struct(GameObject monster,double vectorx , int objecttype=0)
     {
         this.monster = monster;
