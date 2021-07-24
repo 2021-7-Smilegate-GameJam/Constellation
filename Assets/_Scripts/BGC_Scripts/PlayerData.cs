@@ -4,61 +4,34 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class PlayerData : MonoBehaviour
 {
-    Animator cha_ani;
-    Color halpalpha = new Color(1, 1, 1, 0.5f);
-    Color fullalpha = new Color(1, 1, 1, 1);
-    private SpriteRenderer main_cha;
-   
-    public void Start()
+    public enum Playerstate
     {
-        cha_ani = transform.GetComponent<Animator>();
-        main_cha = GetComponent<SpriteRenderer>();
+        run,
+        jump,
+        sliding,
+        attack
     }
-    
+    public Playerstate current_state;
     public int hp = 5;
+    private Vector2 touchBeganPos;
+    private Vector2 touchEndedPos;
+    private Vector2 touchDif;
+    private float swipeSensitivity;
     
     private void Update()
     {
        
     }
-    
+  
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Obstruction")
         {
             
             hp -= 1;
-            StartCoroutine(damaged());
-            if (hp == 0)
-            {
-
-
-            }
         }
-      
-    }
-    public void Game_over()
-    {
-        //실패시 회전 멈추는 메서드
-        //타일맵,및 오브젝트이동 정지
-
+        
     }
 
-    IEnumerator damaged()
-    {
-        yield return new WaitForSeconds(0.1f);
-        main_cha.color = halpalpha;
-        yield return new WaitForSeconds(0.1f);
-        main_cha.color = fullalpha;
-        yield return new WaitForSeconds(0.1f);
-        main_cha.color = halpalpha;
-        yield return new WaitForSeconds(0.1f);
-        main_cha.color = fullalpha;
-        yield return new WaitForSeconds(0.1f);
-        main_cha.color = halpalpha;
-        yield return new WaitForSeconds(0.1f);
-        main_cha.color = fullalpha;
-    }
-
-  
+    //swipe and touch...
 }

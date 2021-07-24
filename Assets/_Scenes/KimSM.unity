@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 0}
-  model: {fileID: 11400000, guid: 5f4c43dfb548eb7479e2e00a16b903e7, type: 2}
+  model: {fileID: 11400000, guid: 36ba8f2a3f900e548adb1feb1bcbb47e, type: 2}
 --- !u!114 &76156627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 0}
-  model: {fileID: 11400000, guid: 5f4c43dfb548eb7479e2e00a16b903e7, type: 2}
+  model: {fileID: 11400000, guid: 36ba8f2a3f900e548adb1feb1bcbb47e, type: 2}
 --- !u!114 &442993357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  stageManagerPrefab: {fileID: 4953736616466507625, guid: 677b9d2380bc5ec41809fc78facdd474, type: 3}
   endButton: {fileID: 2072015168}
   lineRenderer: {fileID: 829435830}
   name: {fileID: 1466118767}
@@ -2426,6 +2427,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
