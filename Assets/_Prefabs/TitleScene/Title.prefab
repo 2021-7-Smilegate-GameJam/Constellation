@@ -1610,6 +1610,10 @@ PrefabInstance:
       propertyPath: titleManager
       value: 
       objectReference: {fileID: 4793427625242310294}
+    - target: {fileID: 3103013674448170446, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
+      propertyPath: dontDestroyOnLoad
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
 --- !u!114 &7460123682593926051 stripped

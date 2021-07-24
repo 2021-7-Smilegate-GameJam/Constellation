@@ -18,13 +18,14 @@ public class TitleManager : MonoBehaviour
 
     public AudioManager audioManager;
     bool isSoundOn = true;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         setting.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
         gamestart.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
         audioManager.GetComponent<AudioManager>();
-        StartCoroutine("ButtonActive");
+        StartCoroutine(ButtonActive());
     }
 
     public void SoundOnOffChange()
@@ -59,7 +60,7 @@ public class TitleManager : MonoBehaviour
         transform.parent.gameObject.SetActive(false);
     }
 
-    IEnumerator ButtonActive()
+    private IEnumerator ButtonActive()
     {
         setting.gameObject.SetActive(false);
         gamestart.gameObject.SetActive(false);
