@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
     Color halpalpha = new Color(1, 1, 1, 0.5f);
     Color fullalpha = new Color(1, 1, 1, 1);
     private SpriteRenderer main_cha;
+   
     public void Start()
     {
         cha_ani = transform.GetComponent<Animator>();
@@ -59,5 +60,5 @@ public class PlayerData : MonoBehaviour
         main_cha.color = fullalpha;
     }
 
-    //swipe and touch...
+  
 }
