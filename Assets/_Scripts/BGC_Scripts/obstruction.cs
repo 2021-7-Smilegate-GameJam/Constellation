@@ -12,7 +12,7 @@ public class obstruction : MonoBehaviour
     List<GameObject> spawned_object;
     
     public float timer;
-    public void Start()
+    public void Awake()
     {
        this.stage=this.gameObject.GetComponent<TilemapLoop>().stage;
         spawn_data = new List<obstruction_struct>();
@@ -23,7 +23,7 @@ public class obstruction : MonoBehaviour
     {
         for(int i =0; i<stage.objectPositions.Length;i++)
         {
-            int ran = Random.Range(0, monster.Length);
+            int ran = 0; //defaultobject
             int onairtest = Random.Range(0, 3);
             //need moster data
             spawn_data.Add(new obstruction_struct(monster[ran], stage.objectPositions[i], onairtest));
@@ -61,15 +61,15 @@ public class obstruction : MonoBehaviour
                 {
                     case 0:
                         spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0), Quaternion.identity, this.gameObject.transform));
-                        //need change sprite
+                     
                         break;
                     case 1:
                         spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, 0.5f, 0), Quaternion.identity, this.gameObject.transform));
-                        //need change sprite
+                  
                         break;
                     case 2:
                         spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0), Quaternion.identity, this.gameObject.transform));
-                        //need change sprite
+                        
                         break;
 
 

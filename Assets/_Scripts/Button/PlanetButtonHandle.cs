@@ -43,7 +43,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
         startTouchPos = _eventData.position;
         currentAtkPos = startTouchPos;
     }
-
+    
     public void OnDrag(PointerEventData _eventData)
     {
         currentTouchPos = _eventData.position;

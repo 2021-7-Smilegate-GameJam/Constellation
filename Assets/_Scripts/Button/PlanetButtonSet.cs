@@ -13,7 +13,7 @@ public class PlanetButtonSet : MonoBehaviour
   
     private List<double> obstaclePosList = new List<double>();         //오브젝트 x리스트
     private RectTransform buttonRect;
-   
+    
     [SerializeField] private GameObject renderImg;
     [SerializeField] private StageModel temp;
     [SerializeField] private Image gageAmount;
