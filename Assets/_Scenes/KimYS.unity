@@ -133,6 +133,16 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6511355296997177838, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
   m_PrefabInstance: {fileID: 6511355296652841211}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &593773095 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 593773095, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+  m_PrefabInstance: {fileID: 6511355296652841211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &635789875 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 635789875, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+  m_PrefabInstance: {fileID: 6511355296652841211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &672413243 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6511355297323148992, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
@@ -343,9 +353,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 478554389}
     - target: {fileID: 3103013674448170446, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
+      propertyPath: Source6
+      value: 
+      objectReference: {fileID: 635789875}
+    - target: {fileID: 3103013674448170446, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
+      propertyPath: Source7
+      value: 
+      objectReference: {fileID: 593773095}
+    - target: {fileID: 3103013674448170446, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
       propertyPath: audioPool
       value: 
       objectReference: {fileID: 1980210097}
+    - target: {fileID: 3103013674448170446, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
+      propertyPath: titleManager
+      value: 
+      objectReference: {fileID: 1367670666}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2ad99506b9a7b446931ff6c6daf6412, type: 3}
 --- !u!114 &1335881909074424672 stripped
@@ -456,6 +478,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 593773095, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 635789875, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511355295874682254, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511355296047814156, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6511355296284035913, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -503,6 +541,14 @@ PrefabInstance:
     - target: {fileID: 6511355296284035914, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
       propertyPath: m_Name
       value: AudioPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511355296997177838, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511355297323148992, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}

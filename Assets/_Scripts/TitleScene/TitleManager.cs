@@ -33,8 +33,18 @@ public class TitleManager : MonoBehaviour
         isSoundOn = !isSoundOn;
         soundOn.interactable = !isSoundOn;
         soundOff.interactable = isSoundOn;
-        audioManager.SoundOnOff();
         volume.interactable = isSoundOn;
+
+        audioManager.SoundOnOff();
+        
+        if(isSoundOn)
+        {
+            audioManager.SoundStart();
+        }
+        else
+        {
+            audioManager.SoundStop();
+        }
     }
 
     public void PanelOnOffChange()
