@@ -53,7 +53,7 @@ public class obstruction : MonoBehaviour
             {
                 spawned_object[i].transform.position = new Vector3(
                     spawned_object[i].transform.position.x - Time.deltaTime * stage.rollingSpeed,
-                    spawned_object[i].transform.position.y, 0);
+                    spawned_object[i].transform.position.y, .5f);
             }
         }
     }

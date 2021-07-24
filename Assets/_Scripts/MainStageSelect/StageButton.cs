@@ -6,6 +6,7 @@ public class StageButton : MonoBehaviour
 {
     public Image img;
     public static GameObject stageSelectionParent;
+    public static GameObject circleRenderMiniMap;
     public StageModel model;
     private Button button;
     
@@ -21,7 +22,10 @@ public class StageButton : MonoBehaviour
     private void PassModel()
     {
         var stageManager = Instantiate(Stages.instance.stageManagerPrefab);
-        stageManager.GetComponent<obstruction>().stage = stageManager.GetComponent<TilemapLoop>().stage = model;
+        var obs = stageManager.GetComponent<obstruction>();
+        obs.stage = stageManager.GetComponent<TilemapLoop>().stage = model;
+        var miniRenderer = Instantiate(circleRenderMiniMap);
+        miniRenderer.GetComponentInChildren<PlanetButtonSet>().obs = obs;
     }
 
     private void ClearStage()
