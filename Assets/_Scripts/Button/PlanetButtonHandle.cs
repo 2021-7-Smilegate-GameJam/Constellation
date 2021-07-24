@@ -25,8 +25,6 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
         {
             if (eState.Equals(value)) return;
 
-            if (eState.Equals(EState.E_JUMP) && value.Equals(EState.E_IDLE)) return;            //점프중에 스테이트가 기본으로 바뀌면 리턴 충돌에서 처리해야 할 것 같다.
-
             ExitState(eState);
             eState = value;
 
@@ -76,7 +74,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
         }
         else
         {
-            //eState_ = EState.E_IDLE;
+            eState_ = EState.E_IDLE;
         }
 
     }
@@ -110,8 +108,8 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
         //yield return new WaitUntil(() => playerAnim.IsInTransition(0));
         yield return new WaitForSeconds(0.1f);
 
-        eState_ = EState.E_IDLE;
-        Debug.Log(eState);
+        if(eState == EState.E_ATTACK)
+            eState_ = EState.E_IDLE;
     }
 
     //exit에서 할게 있나
