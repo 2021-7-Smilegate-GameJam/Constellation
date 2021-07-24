@@ -23,7 +23,6 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
         }
         set
         {
-
             if (eState.Equals(value)) return;
 
             if (eState.Equals(EState.E_JUMP) && value.Equals(EState.E_IDLE)) return;            //점프중에 스테이트가 기본으로 바뀌면 리턴 충돌에서 처리해야 할 것 같다.
@@ -77,7 +76,7 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
         }
         else
         {
-            eState_ = EState.E_IDLE;
+            //eState_ = EState.E_IDLE;
         }
 
     }
@@ -90,35 +89,29 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IPointerDownHandl
 
                 break;
             case EState.E_JUMP:
-                Debug.Log("점프");
-                playerAnim.SetTrigger("jump");
+                StartCoroutine(Action("jump"));
                 break;
             case EState.E_ATTACK:
-                Debug.Log("공격");
-                playerAnim.SetTrigger("attack");
-                eState_ = EState.E_IDLE;
+                StartCoroutine(Action("attack"));
                 break;
             case EState.E_SLIDE:
-                Debug.Log("슬라이드");
-                playerAnim.SetTrigger("sliding");
-
+                StartCoroutine(Action("sliding"));
                 break;
             default:
                 break;
         }
     }
 
-    IEnumerator Attack()
+    IEnumerator Action(string _paramName)
     {
-        yield return new WaitUntil(() => playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f);
+        Debug.Log(_paramName);
+        playerAnim.SetTrigger(_paramName);
 
-        eState_ = EState.E_IDLE;        
-    }
+        //yield return new WaitUntil(() => playerAnim.IsInTransition(0));
+        yield return new WaitForSeconds(0.1f);
 
-    IEnumerator Slide()
-    {
-        yield return new WaitUntil(() => playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f);
-        //yield return new WaitForSeconds(0.1f);
+        eState_ = EState.E_IDLE;
+        Debug.Log(eState);
     }
 
     //exit에서 할게 있나
