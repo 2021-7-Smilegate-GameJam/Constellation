@@ -13,19 +13,18 @@ public class TitleManager : MonoBehaviour
     public Button soundOff;
     public Slider volume;
     public GameObject panel;
+    public Image background;
 
     public AudioManager audioManager;
-
-    bool isSoundOn;
-
+    bool isSoundOn = true;
+    bool buttonActive = true;
     // Start is called before the first frame update
     void Start()
     {
-        isSoundOn = true;
-   
-        volume.value = 0.5f;
-        panel.SetActive(false);
+        setting.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
+        gamestart.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
         audioManager.GetComponent<AudioManager>();
+        StartCoroutine("ButtonActive");
     }
 
     public void SoundOnOffChange()
@@ -57,4 +56,19 @@ public class TitleManager : MonoBehaviour
         Debug.Log("SceneMove");
         //SceneManager.LoadScene("KimSM");
     }
+
+    IEnumerator ButtonActive()
+    {
+        setting.gameObject.SetActive(false);
+        gamestart.gameObject.SetActive(false);
+
+        yield return new WaitUntil(() => background.rectTransform.pivot.y >= 0.95);
+        yield return new WaitForSeconds(1f);
+
+        setting.gameObject.SetActive(true);
+        gamestart.gameObject.SetActive(true);
+        buttonActive = true;
+        
+    }
+
 }
