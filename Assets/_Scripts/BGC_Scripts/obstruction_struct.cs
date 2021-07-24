@@ -6,12 +6,17 @@ public class obstruction_struct : MonoBehaviour
 {
    public GameObject monster;
    public double vectorx;
-    public bool onair;
+    public int object_type;
     // Start is called before the first frame update
-    public obstruction_struct(GameObject monster,double vectorx , bool onair)
+    public obstruction_struct()
+    {
+
+    }
+    public obstruction_struct(GameObject monster,double vectorx , int objecttype=0)
     {
         this.monster = monster;
         this.vectorx = vectorx;
-        this.onair = onair;
+        this.object_type = objecttype;
     }
+ 
 }

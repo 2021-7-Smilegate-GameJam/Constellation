@@ -17,11 +17,7 @@ public class TilemapLoop : MonoBehaviour
     public void get_stagemodel(StageModel stage)
     {
         this.stage = stage;
-    }
 
-
-    void Start()
-    {
         for (int x = -6; x < 6; x++)
         {
             for (int y = -7; y < -1; y++)
@@ -42,9 +38,16 @@ public class TilemapLoop : MonoBehaviour
 
                 }
             }
-         last_x = x;
+            last_x = x;
         }
     }
+
+    private void Start()
+    {
+        //test
+        get_stagemodel(stage);
+    }
+
     private void Add_tile()
     {
         for (int y = -3; y < -1; y++)
@@ -93,9 +96,10 @@ public class TilemapLoop : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (transform.GetComponent<obstruction>().timer < 60)
+        if (transform.GetComponent<obstruction>().timer < 65)
         {
             Movetilemap();
         }
+        
     }
 }

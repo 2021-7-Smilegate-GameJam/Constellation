@@ -24,7 +24,8 @@ public class obstruction : MonoBehaviour
         for(int i =0; i<stage.objectPositions.Length;i++)
         {
             int ran = Random.Range(0, monster.Length);
-            bool onairtest =Random.Range(0, 2)==0?true:false;
+            int onairtest = Random.Range(0, 3);
+            //need moster data
             spawn_data.Add(new obstruction_struct(monster[ran], stage.objectPositions[i], onairtest));
         }
         return spawn_data;
@@ -32,14 +33,14 @@ public class obstruction : MonoBehaviour
     
     private void FixedUpdate()
     {
-        timer += Time.deltaTime;
+        timer = Mathf.Clamp(timer + Time.deltaTime,0,65);
         spawn_object();
         move_object();
     }
    
     public void move_object()
     {
-        if (timer < 60)
+        if (timer < 65)
         {
             for (int i = 0; i < spawned_object.Count; i++)
             {
@@ -56,14 +57,24 @@ public class obstruction : MonoBehaviour
             if (timer>spawn_data[0].vectorx)
             {
 
-            if(spawn_data[0].onair)
+                switch (spawn_data[0].object_type)
                 {
-                    spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, 0.5f, 0), Quaternion.identity, this.gameObject.transform));
+                    case 0:
+                        spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0), Quaternion.identity, this.gameObject.transform));
+                        //need change sprite
+                        break;
+                    case 1:
+                        spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, 0.5f, 0), Quaternion.identity, this.gameObject.transform));
+                        //need change sprite
+                        break;
+                    case 2:
+                        spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0), Quaternion.identity, this.gameObject.transform));
+                        //need change sprite
+                        break;
+
+
                 }
-            else
-                {
-                    spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0), Quaternion.identity, this.gameObject.transform));
-                }
+        
            
             spawn_data.RemoveRange(0, 1);
             }
