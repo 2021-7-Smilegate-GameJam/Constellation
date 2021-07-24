@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &61852602 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6673193448165103244, guid: cd1cd82f63dfb8e4084d55f14aa07a0e, type: 3}
+  m_PrefabInstance: {fileID: 6673193449092924003}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &445868033 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6883429407766260440, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
@@ -180,6 +185,41 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6511355296047814156, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
   m_PrefabInstance: {fileID: 6511355296652841211}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1729246854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1729246854, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+  m_PrefabInstance: {fileID: 6883429407876301529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1729246855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1729246855, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+  m_PrefabInstance: {fileID: 6883429407876301529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729246854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1729246858
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729246854}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f9f5b41b06eec245a574b7108232878, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1980210097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6511355296284035914, guid: 0edc6608c724d9142a19c8c863f4de74, type: 3}
@@ -271,6 +311,10 @@ PrefabInstance:
       propertyPath: gamestart
       value: 
       objectReference: {fileID: 2086098026}
+    - target: {fileID: 480509727157316517, guid: f234f81e3327b794f9103e5828810620, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 1729246855}
     - target: {fileID: 480509727157316517, guid: f234f81e3327b794f9103e5828810620, type: 3}
       propertyPath: audioManager
       value: 
@@ -616,17 +660,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1729246854, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729246854, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729246856, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729246857, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5016804153330282040, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1367670666}
     - target: {fileID: 5552053332762277196, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5552053333133841731, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6771089047990203926, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -716,9 +776,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6883429407626068769, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 61852602}
     - target: {fileID: 6883429407626068780, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883429407766260440, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6883429408878728515, guid: cf5d311fc8b3c8042879d4e0a6e37f8c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

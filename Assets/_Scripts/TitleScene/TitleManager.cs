@@ -15,7 +15,6 @@ public class TitleManager : MonoBehaviour
     public GameObject panel;
 
     public AudioManager audioManager;
-
     bool isSoundOn;
 
     // Start is called before the first frame update
@@ -57,4 +56,5 @@ public class TitleManager : MonoBehaviour
         Debug.Log("SceneMove");
         //SceneManager.LoadScene("KimSM");
     }
+
 }
