@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +13,11 @@ public class StageButton : MonoBehaviour
         button = GetComponent<Button>();
         //button.onClick.AddListener(PassModel);
         button.onClick.AddListener(ClearStage);
-        button.onClick.AddListener(PassModel);
     }
 
     private void PassModel()
     {
-        var stageManager = Instantiate(Stages.instance.stageManagerPrefab);
-        stageManager.GetComponent<obstruction>().stage = stageManager.GetComponent<TilemapLoop>().stage = model;
+        
     }
 
     private void ClearStage()
