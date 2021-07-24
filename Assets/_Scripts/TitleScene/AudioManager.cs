@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
     public TitleManager titleManager;
     public GameObject audioPool;
@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 
     public bool isSoundOn = true;
     public float soundVolume;
-    
+
     void Start()
     {
         SoundStart();
@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-      if(titleManager.panel.activeSelf)
+        if (titleManager.panel.activeSelf)
         {
             soundVolume = titleManager.volume.value * 0.6f;
             Source1.volume = soundVolume;
@@ -62,17 +62,16 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator SoundType1()
     {
-
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source1.Play();
         Debug.Log("1");
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source2.Play();
         Debug.Log("2");
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source3.Play();
         Debug.Log("3");
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source4.Play();
         Debug.Log("4");
 
@@ -81,17 +80,16 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator SoundType2()
     {
-
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source1.Play();
         Debug.Log("5");
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source6.Play();
         Debug.Log("6");
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source7.Play();
         Debug.Log("7");
-        yield return new WaitForSeconds((float)hp / 50 + 0.5f);
+        yield return new WaitForSeconds((float) hp / 50 + 0.5f);
         Source4.Play();
         Debug.Log("8");
 
