@@ -15,6 +15,8 @@ public class Stages : Singleton<Stages>
     public Button endButton;
     public StageButton[] stageButtons;
     private List<StarModel> clearedStages = new List<StarModel>();
+    [SerializeField]
+    private LineRenderer lineRenderer;
 
     public void AddStar(StarModel starModel)
     {
@@ -30,10 +32,17 @@ public class Stages : Singleton<Stages>
     {
         if (clearedStages.Count <= 0) return;
         
-        clearedStages.Remove(model);
-        var closest = clearedStages[0];
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, model.position);
         
-        for (int i = 1; i < clearedStages.Count; i++)
+        var closest = new StarModel
+        {
+            position = new Vector3(99999f,99999f,0f)
+        };
+        
+        Debug.Log($"{clearedStages.Remove(model)}, pos : {model.position}");
+
+        for (int i = 0; i < clearedStages.Count; i++)
         {
             var dir = model.position - clearedStages[i].position;
             var distance = dir.sqrMagnitude;
@@ -43,6 +52,7 @@ public class Stages : Singleton<Stages>
                 closest = clearedStages[i];
             }
         }
+
         DrawLine(closest);
     }
 
