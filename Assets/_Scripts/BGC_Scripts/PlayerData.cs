@@ -21,7 +21,7 @@ public class PlayerData : MonoBehaviour
     {
        
     }
-  
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Obstruction")
@@ -29,12 +29,11 @@ public class PlayerData : MonoBehaviour
             
             hp -= 1;
         }
-        
+        else  if(hp==0)
+        {
+
+        }
     }
-    public void Jump()
-    {
-        cha_ani.SetTrigger("Jump");
-    }
-    
+   
     //swipe and touch...
 }

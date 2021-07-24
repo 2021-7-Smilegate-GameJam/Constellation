@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 public class TilemapLoop : MonoBehaviour
 {
     public StageModel stage;
+   
     public Tile[] Bottomtile;
     public Tile[] Toptile;
    //need tile image;
@@ -95,11 +96,15 @@ public class TilemapLoop : MonoBehaviour
           }
     private void FixedUpdate()
     {
-
+        
         if (transform.GetComponent<obstruction>().timer < 65)
         {
             Movetilemap();
         }
-        
+      
+    }
+    public void stageclear()
+    {
+        StageClear.StageCleardata.stages.Add(stage);
     }
 }
