@@ -48,6 +48,7 @@ public class TilemapLoop : MonoBehaviour
     {
         //test
         get_stagemodel(stage);
+        GetComponentInChildren<Canvas>().worldCamera = Camera.main;
     }
 
     private void Add_tile()
