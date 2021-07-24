@@ -26,6 +26,8 @@ public class StageButton : MonoBehaviour
         obs.stage = stageManager.GetComponent<TilemapLoop>().stage = model;
         var miniRenderer = Instantiate(circleRenderMiniMap);
         miniRenderer.GetComponentInChildren<PlanetButtonSet>().obs = obs;
+        miniRenderer.GetComponentInChildren<PlanetButtonHandle>().playerAnim =
+            stageManager.GetComponentInChildren<Animator>();
     }
 
     private void ClearStage()
