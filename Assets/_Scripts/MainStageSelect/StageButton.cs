@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class StageButton : MonoBehaviour
 {
     public Image img;
-    
+    public static GameObject stageSelectionParent;
     public StageModel model;
     private Button button;
     
@@ -15,6 +15,7 @@ public class StageButton : MonoBehaviour
         //button.onClick.AddListener(PassModel);
         button.onClick.AddListener(ClearStage);
         button.onClick.AddListener(PassModel);
+        button.onClick.AddListener(() => stageSelectionParent.SetActive(false));
     }
 
     private void PassModel()
