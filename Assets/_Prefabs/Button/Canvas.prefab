@@ -356,7 +356,7 @@ RectTransform:
   m_GameObject: {fileID: 7526607921457284032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 7526607920285761531}
   m_Father: {fileID: 7526607921042778792}
@@ -417,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20cba19221ecd1489728f7583d8d277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnim: {fileID: 0}
 --- !u!114 &7526607921457284044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,3 +433,4 @@ MonoBehaviour:
   renderImg: {fileID: 5310214852874947099, guid: a57f53a38b7a2a948bb6a677e5c653b6, type: 3}
   temp: {fileID: 11400000, guid: 5f4c43dfb548eb7479e2e00a16b903e7, type: 2}
   gageAmount: {fileID: 7526607920126733260}
+  obs: {fileID: 0}
