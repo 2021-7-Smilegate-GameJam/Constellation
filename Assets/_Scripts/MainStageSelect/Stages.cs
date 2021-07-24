@@ -99,5 +99,6 @@ public class Stages : Singleton<Stages>
             name.text = MakeName();
             DrawLine(SelectStartStar());
         });
+        StageButton.stageSelectionParent = transform.parent.gameObject;
     }
 }
