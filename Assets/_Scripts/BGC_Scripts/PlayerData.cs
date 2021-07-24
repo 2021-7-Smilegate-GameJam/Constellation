@@ -26,13 +26,11 @@ public class PlayerData : MonoBehaviour
     {
         if (collision.tag == "Obstruction")
         {
-            
             hp -= 1;
             StartCoroutine(damaged());
             if (hp == 0)
             {
-
-
+                Game_over();
             }
         }
       
@@ -41,7 +39,8 @@ public class PlayerData : MonoBehaviour
     {
         //실패시 회전 멈추는 메서드
         //타일맵,및 오브젝트이동 정지
-
+        FindObjectOfType<PlanetButtonSet>().StopRotate();
+        
     }
 
     IEnumerator damaged()

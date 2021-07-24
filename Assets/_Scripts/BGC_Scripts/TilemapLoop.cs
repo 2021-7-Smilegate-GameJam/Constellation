@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 public class TilemapLoop : MonoBehaviour
 {
     public StageModel stage;
-   
+
     public Tile[] Bottomtile;
+
     public Tile[] Toptile;
-   //need tile image;
+
+    //need tile image;
     public Tilemap tilemap;
     public float testfloat;
     private int last_x;
@@ -25,7 +28,7 @@ public class TilemapLoop : MonoBehaviour
             for (int y = -7; y < -1; y++)
             {
                 Vector3Int p = new Vector3Int(last_x, y, 0);
-                if (y == 2)
+                if (y == -2)
                 {
                     int top_tiletype = Random.Range(0, Toptile.Length);
                     Tile top_tile = Toptile[top_tiletype];
@@ -37,9 +40,9 @@ public class TilemapLoop : MonoBehaviour
                     int bottom_tiletype = Random.Range(0, Bottomtile.Length);
                     Tile bottom_tile = Bottomtile[bottom_tiletype];
                     tilemap.SetTile(p, bottom_tile);
-
                 }
             }
+
             last_x = x;
         }
     }
@@ -56,63 +59,59 @@ public class TilemapLoop : MonoBehaviour
         for (int y = -3; y < -1; y++)
         {
             Vector3Int p = new Vector3Int(last_x, y, 0);
-
-         
-         
         }
     }
+
     private void Movetilemap()
     {
         movement_stack += Time.deltaTime * stage.rollingSpeed;
-        tilemap.transform.parent.position = new Vector3(tilemap.transform.parent.position.x - Time.deltaTime * stage.rollingSpeed, tilemap.transform.parent.position.y, tilemap.transform.parent.position.z);
-        if (movement_stack>1.0f)
+        tilemap.transform.parent.position =
+            new Vector3(tilemap.transform.parent.position.x - Time.deltaTime * stage.rollingSpeed,
+                tilemap.transform.parent.position.y, tilemap.transform.parent.position.z);
+        if (movement_stack > 1.0f)
         {
             tilemap.size = new Vector3Int(tilemap.size.x - 1, 3, 0);
             for (int y = -7; y < -1; y++)
             {
-                Vector3Int p = new Vector3Int( last_x, y, 0);
-                    if(y==2)
+                Vector3Int p = new Vector3Int(last_x, y, 0);
+                if (y == -2)
                 {
                     int top_tiletype = Random.Range(0, Toptile.Length);
                     Tile top_tile = Toptile[top_tiletype];
                     tilemap.SetTile(p, top_tile);
                     tilemap.SetTile(new Vector3Int(first_x, y, 0), null);
                 }
-             else
-                { 
-                        int bottom_tiletype = Random.Range(0, Bottomtile.Length);
+                else
+                {
+                    int bottom_tiletype = Random.Range(0, Bottomtile.Length);
                     Tile bottom_tile = Bottomtile[bottom_tiletype];
                     tilemap.SetTile(p, bottom_tile);
                     tilemap.SetTile(new Vector3Int(first_x, y, 0), null);
                 }
-                   
             }
-           
+
             movement_stack -= 1.0f;
             last_x++;
             first_x++;
-              
-
         }
+    }
 
-          }
     private void FixedUpdate()
     {
-        
         if (transform.GetComponent<obstruction>().timer < 65)
         {
             Movetilemap();
         }
-      else if(transform.GetComponent<obstruction>().timer == 65 &&currentstageclear!=true)
+        else if (transform.GetComponent<obstruction>().timer == 65 && currentstageclear != true)
         {
             stageclear();
-         
+
             currentstageclear = true;
         }
     }
+
     public void stageclear()
     {
-      
         StageClear.StageCleardata.stages.Add(stage);
     }
 }

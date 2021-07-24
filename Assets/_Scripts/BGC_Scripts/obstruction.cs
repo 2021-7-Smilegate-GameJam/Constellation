@@ -29,7 +29,7 @@ public class obstruction : MonoBehaviour
     {
         for (int i = 0; i < stage.objectPositions.Length; i++)
         {
-            int ran = 0; //defaultobject
+            int ran = Random.Range(0, monster.Length);
             int onairtest = Random.Range(0, 3);
             //need moster data
             spawn_data.Add(new obstruction_struct(monster[ran], stage.objectPositions[i], onairtest));
