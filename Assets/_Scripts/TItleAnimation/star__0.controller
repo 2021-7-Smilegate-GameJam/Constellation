@@ -11,7 +11,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2579460350572140676}
-    m_Position: {x: 456.92825, y: 58.42444, z: 0}
+    m_Position: {x: 460, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -30,7 +30,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: starAnimation
-  m_Speed: 0.4
+  m_Speed: 0.07
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

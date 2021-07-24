@@ -15,9 +15,11 @@ public class TitleManager : MonoBehaviour
     public GameObject panel;
     public Image background;
     public GameObject stageSelect;
+    public Text gamestartText;
 
     public AudioManager audioManager;
     bool isSoundOn = true;
+
     
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +28,7 @@ public class TitleManager : MonoBehaviour
         gamestart.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
         audioManager.GetComponent<AudioManager>();
         StartCoroutine(ButtonActive());
+        StartCoroutine(GamestartText());
     }
 
     public void SoundOnOffChange()
@@ -70,7 +73,22 @@ public class TitleManager : MonoBehaviour
 
         setting.gameObject.SetActive(true);
         gamestart.gameObject.SetActive(true);
-        
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(GamestartText());
     }
+
+    private IEnumerator GamestartText()
+    {
+        
+        gamestartText.text = "G a m e  S t a r t";
+        yield return new WaitForSeconds(2f);
+        gamestartText.text = "";
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(GamestartText());
+    }
+
+
 
 }
