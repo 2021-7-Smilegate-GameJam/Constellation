@@ -495,5 +495,13 @@ PrefabInstance:
       propertyPath: playerAnim
       value: 
       objectReference: {fileID: 1618283002}
+    - target: {fileID: 7526607921457284046, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526607921457284046, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7600114072883145061, guid: f4e531e20180ab048b659c6833de2d00, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a611194017941db43bd12fdc0ce751bc, type: 3}
