@@ -9,11 +9,30 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
     private Vector2 currentTouchPos;
     private Vector2 currentAtkPos;
 
-    private StateMachine stateMachine;
+    [SerializeField] private Animator playerAnim;       //ë‚˜ì¤‘ì— ê·¸ëƒ¥ findë¡œ ì²˜ë¦¬
+
+    public static EState eState;
+    public EState eState_
+    {
+        get
+        {
+            return eState;
+        }
+        set
+        {
+            if (eState.Equals(value)) return;
+
+            ExitState(eState);
+            eState = value;
+
+            EnterState(eState);
+        }
+    }
+
 
     void Awake()
     {
-        stateMachine = new StateMachine(new IdleState());
+        eState_ = EState.E_IDLE;
     }
 
     public void OnPointerDown(PointerEventData _eventData)
@@ -33,11 +52,11 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
         {
             if (0.9f < normDirVec.y && normDirVec.y <= 1f)
             {
-                stateMachine.SetState(new JumpState());
+                eState_ = EState.E_JUMP;
             }
             else if (-1f <= normDirVec.y && normDirVec.y < -0.9f)
             {
-                stateMachine.SetState(new SlideState());
+                eState_ = EState.E_SLIDE;
             }
         }
     }
@@ -53,75 +72,130 @@ public class PlanetButtonHandle : MonoBehaviour, IDragHandler, IEndDragHandler, 
 
         if((currentAtkPos - startTouchPos).sqrMagnitude < 1f)
         {
-            stateMachine.SetState(new AttackState());
+            eState_ = EState.E_ATTACK;
         }
     }
-}
 
-
-#region »óÅÂ º¯È­.. ±×³É ½É½ÉÇØ¼­
-public enum EState { E_IDLE, E_JUMP, E_ATTACK, E_SLIDE };
-//»ó¼¼ Á¶°ÇÀº ¾ÆÁ÷
-
-public abstract class IState
-{
-    public abstract void OnEnter();
-    public virtual void OnUpdate() { }
-    public virtual void OnExit() { }
-}
-
-public class StateMachine
-{
-    public IState state { get; private set; }
-
-    public StateMachine(IState _state)
+    public void EnterState(EState _eState)
     {
-        this.state = _state;
-    }
-
-    public void SetState(IState _state)
-    {
-        if (state.Equals(_state))
+        switch (_eState)
         {
-            return;
+            case EState.E_IDLE:
+
+                break;
+            case EState.E_JUMP:
+                StartCoroutine(Action("jump"));
+                break;
+            case EState.E_ATTACK:
+                StartCoroutine(Action("attack"));
+                break;
+            case EState.E_SLIDE:
+                StartCoroutine(Action("sliding"));
+                break;
+            default:
+                break;
         }
-
-        _state.OnExit();
-        this.state = _state;
-        state.OnEnter();
     }
-}
 
-public class IdleState : IState
-{
-    public override void OnEnter()
+    IEnumerator Action(string _paramName)
     {
-        Debug.Log("¿ø»óÅÂ");
-    }
-}
+        Debug.Log(_paramName);
+        playerAnim.SetTrigger(_paramName);
 
-public class JumpState : IState
-{
-    public override void OnEnter()
+        //yield return new WaitUntil(() => playerAnim.IsInTransition(0));
+        yield return new WaitForSeconds(0.1f);
+
+        if(eState == EState.E_ATTACK)
+            eState_ = EState.E_IDLE;
+    }
+
+    //exitì—ì„œ í• ê²Œ ìˆë‚˜
+    public void ExitState(EState _eState)
     {
-        Debug.Log("Á¡ÇÁ");
+        switch (_eState)
+        {
+            case EState.E_IDLE:
+                break;
+            case EState.E_JUMP:
+                break;
+            case EState.E_ATTACK:
+                break;
+            case EState.E_SLIDE:
+                break;
+            default:
+                break;
+        }
     }
 }
 
-public class AttackState : IState
-{
-    public override void OnEnter()
-    {
-        Debug.Log("°ø°İ");
-    }
-}
+//íê¸° ì²˜ë¶„
+//ìƒì„¸ ì¡°ê±´ì€ ì•„ì§
 
-public class SlideState : IState
-{
-    public override void OnEnter()
-    {
-        Debug.Log("½½¶óÀÌµå");
-    }
-}
+//public abstract class IState
+//{
+//    public abstract void OnEnter();
+//    public virtual void OnUpdate() { }
+//    public virtual void OnExit() { }
+//}
 
-#endregion
+//public class StateMachine
+//{
+//    public enum EState { E_IDLE, E_JUMP, E_ATTACK, E_SLIDE };
+
+//    public IState state { get; private set; }
+//    public EState eState { get; private set; }
+
+//    public StateMachine(IState _state, EState _eState)
+//    {
+//        this.state = _state;
+//        this.eState = _eState;
+//    }
+
+//    public void SetState(IState _state, EState _eState)
+//    {
+//        if (state.Equals(_state))
+//        {
+//            return;
+//        }
+
+//        _state.OnExit();
+
+//        this.state = _state;
+//        this.eState = _eState;
+
+//        state.OnEnter();
+//    }
+//}
+
+//public class IdleState : IState
+//{
+//    public override void OnEnter()
+//    {
+//        Debug.Log("ì›ìƒíƒœ");
+//    }
+//}
+
+//public class JumpState : IState
+//{
+//    public override void OnEnter()
+//    {
+
+//        Debug.Log("ì í”„");
+//    }
+//}
+
+//public class AttackState : IState
+//{
+//    public override void OnEnter()
+//    {
+//        Debug.Log("ê³µê²©");
+//    }
+//}
+
+//public class SlideState : IState
+//{
+//    public override void OnEnter()
+//    {
+//        Debug.Log("ìŠ¬ë¼ì´ë“œ");
+//    }
+//}
