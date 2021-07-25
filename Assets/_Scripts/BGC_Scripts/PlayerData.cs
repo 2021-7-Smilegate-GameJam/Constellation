@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class PlayerData : MonoBehaviour
 {
+    public obstruction obs;
+    
     Animator cha_ani;
     Color halpalpha = new Color(1, 1, 1, 0.5f);
     Color fullalpha = new Color(1, 1, 1, 1);
@@ -16,16 +18,12 @@ public class PlayerData : MonoBehaviour
     }
     
     public int hp = 5;
-    
-    private void Update()
-    {
-       
-    }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Obstruction")
+        if (collision.CompareTag("Obstruction"))
         {
+            Destroy(collision);
             hp -= 1;
             StartCoroutine(damaged());
             if (hp == 0)
@@ -39,8 +37,10 @@ public class PlayerData : MonoBehaviour
     {
         //실패시 회전 멈추는 메서드
         //타일맵,및 오브젝트이동 정지
-        FindObjectOfType<PlanetButtonSet>().StopRotate();
-        
+        var planet = FindObjectOfType<PlanetButtonSet>();
+        Debug.Log(planet.name);
+        planet.StopRotate();
+        obs.isPlaing = false;
     }
 
     IEnumerator damaged()

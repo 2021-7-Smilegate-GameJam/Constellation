@@ -21,7 +21,8 @@ public class PlanetButtonSet : MonoBehaviour
     [SerializeField] private RectTransform playerIcon;
 
     private List<obstruction_struct> obstaclceList = new List<obstruction_struct>();
-
+    private Coroutine rotate = null;
+    
     private void Awake()
     {
         //스테이지 모델에서 정보 받아오기
@@ -42,7 +43,7 @@ public class PlanetButtonSet : MonoBehaviour
     {
         obstaclceList = obs.SpawnData;
         RenderObstacle();
-        StartCoroutine(Rotate());
+        rotate = StartCoroutine(Rotate());
     }
 
     private void RenderObstacle()
@@ -110,7 +111,7 @@ public class PlanetButtonSet : MonoBehaviour
 
     public void StopRotate()
     {
-        StopCoroutine(Rotate());
+        StopCoroutine(rotate);
     }
 
 }
