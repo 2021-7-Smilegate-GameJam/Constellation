@@ -14,6 +14,7 @@ public class TitleManager : MonoBehaviour
     public Slider volume;
     public GameObject panel;
     public Image background;
+    public Image logo;
     public GameObject stageSelect;
     public Text gamestartText;
 
@@ -26,6 +27,7 @@ public class TitleManager : MonoBehaviour
     {
         setting.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
         gamestart.image.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
+        logo.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
         audioManager.GetComponent<AudioManager>();
         StartCoroutine(ButtonActive());
         StartCoroutine(GamestartText());
@@ -67,12 +69,15 @@ public class TitleManager : MonoBehaviour
     {
         setting.gameObject.SetActive(false);
         gamestart.gameObject.SetActive(false);
+        logo.gameObject.SetActive(false);
 
         yield return new WaitUntil(() => background.rectTransform.pivot.y >= 0.95);
         yield return new WaitForSeconds(1f);
 
         setting.gameObject.SetActive(true);
         gamestart.gameObject.SetActive(true);
+        logo.gameObject.SetActive(true);
+
 
         yield return new WaitForSeconds(2f);
         StartCoroutine(GamestartText());
