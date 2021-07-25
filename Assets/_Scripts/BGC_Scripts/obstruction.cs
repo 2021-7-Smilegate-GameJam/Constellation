@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class obstruction : MonoBehaviour
 {
@@ -16,10 +18,11 @@ public class obstruction : MonoBehaviour
     public List<GameObject> SpawnedObject => spawned_object;
 
     public float timer;
+    [NonSerialized] public bool isPlaing = true;
+    public StageButton stageButton;
 
-    public void Awake()
+    public void Start()
     {
-        this.stage = this.gameObject.GetComponent<TilemapLoop>().stage;
         spawn_data = new List<obstruction_struct>();
         spawned_object = new List<GameObject>();
         set_monster();
@@ -40,9 +43,18 @@ public class obstruction : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isPlaing) return;
+        
         timer = Mathf.Clamp(timer + Time.deltaTime, 0, 65);
         spawn_object();
         move_object();
+
+        if (timer >= 65f)
+        {
+            isPlaing = false;
+            stageButton.isCleared = true;
+            stageButton.ClearStage();
+        }
     }
 
     public void move_object()
@@ -60,32 +72,27 @@ public class obstruction : MonoBehaviour
 
     public void spawn_object()
     {
-        if (spawn_data.Count != 0)
+        if (spawn_data.Count == 0 || !(timer > spawn_data[0].vectorx)) return;
+
+        switch (spawn_data[0].object_type)
         {
-            if (timer > spawn_data[0].vectorx)
-            {
-                switch (spawn_data[0].object_type)
-                {
-                    case 0:
-                        spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0),
-                            Quaternion.identity, this.gameObject.transform));
+            case 0:
+                spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0),
+                    Quaternion.identity, this.gameObject.transform));
 
-                        break;
-                    case 1:
-                        spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, 0.5f, 0),
-                            Quaternion.identity, this.gameObject.transform));
+                break;
+            case 1:
+                spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, 0.5f, 0),
+                    Quaternion.identity, this.gameObject.transform));
 
-                        break;
-                    case 2:
-                        spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0),
-                            Quaternion.identity, this.gameObject.transform));
+                break;
+            case 2:
+                spawned_object.Add(Instantiate(spawn_data[0].monster, new Vector3(7, -0.5f, 0),
+                    Quaternion.identity, this.gameObject.transform));
 
-                        break;
-                }
-
-
-                spawn_data.RemoveRange(0, 1);
-            }
+                break;
         }
+
+        spawn_data.RemoveRange(0, 1);
     }
 }

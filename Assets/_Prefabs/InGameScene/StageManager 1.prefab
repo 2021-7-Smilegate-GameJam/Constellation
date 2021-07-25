@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd9ecdc13be36248a5d95427bc567af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obs: {fileID: 0}
   hp: 5
 --- !u!50 &4953736614960312082
 Rigidbody2D:
@@ -559,7 +560,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4953736616466507624}
   - component: {fileID: 4953736616466507627}
-  - component: {fileID: 965466980336141227}
   - component: {fileID: 4953736616466507626}
   m_Layer: 0
   m_Name: StageManager 1
@@ -600,26 +600,10 @@ MonoBehaviour:
   stage: {fileID: 11400000, guid: 5f4c43dfb548eb7479e2e00a16b903e7, type: 2}
   Bottomtile:
   - {fileID: 11400000, guid: 7366b8dc98504be4898b9a6f5b553b67, type: 2}
-  - {fileID: 11400000, guid: 7366b8dc98504be4898b9a6f5b553b67, type: 2}
   Toptile:
   - {fileID: 11400000, guid: 94e54e1baee49084197e5af402ae5eba, type: 2}
-  - {fileID: 11400000, guid: e5587a23dbd1f6348a414f6ba38040b9, type: 2}
-  - {fileID: 11400000, guid: a750b363ca68eb443b2216e74e8e5a71, type: 2}
   tilemap: {fileID: 4953736615007058403}
   testfloat: 0
---- !u!114 &965466980336141227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953736616466507625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcd9ecdc13be36248a5d95427bc567af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 5
 --- !u!114 &4953736616466507626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,3 +625,4 @@ MonoBehaviour:
   - {fileID: 3891380730024352618, guid: 10292f74d24fb5047a9bb84b7fb8c447, type: 3}
   - {fileID: 3891380730024352618, guid: 89083e8936d8f874a972b60163043920, type: 3}
   timer: 0
+  stageButton: {fileID: 0}
