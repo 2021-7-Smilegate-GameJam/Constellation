@@ -360,6 +360,7 @@ MonoBehaviour:
   gageAmount: {fileID: 7526607920126733260}
   obs: {fileID: 0}
   playerIcon: {fileID: 6592167456286417706}
+  stageSelect: {fileID: 3293573724445685304, guid: 1801fdf138306e44690233ea1f06c30e, type: 3}
 --- !u!1 &7727224937988572243
 GameObject:
   m_ObjectHideFlags: 0
