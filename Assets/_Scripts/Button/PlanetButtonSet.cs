@@ -22,7 +22,9 @@ public class PlanetButtonSet : MonoBehaviour
 
     private List<obstruction_struct> obstaclceList = new List<obstruction_struct>();
     private Coroutine rotate = null;
-    
+
+    public GameObject stageSelect;
+
     private void Awake()
     {
         //스테이지 모델에서 정보 받아오기
@@ -107,6 +109,15 @@ public class PlanetButtonSet : MonoBehaviour
         }
 
         buttonRect.rotation = Quaternion.identity;
+
+        //transform.parent.GetChild(4).gameObject.SetActive(true);
+
+        Instantiate(stageSelect);
+
+        //게임 클리어
+        GameObject.Find("Canvas(Clone)").SetActive(false);
+        GameObject.Find("StageManager 1(Clone)").SetActive(false);
+        
     }
 
     public void StopRotate()
