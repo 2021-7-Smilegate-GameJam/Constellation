@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 public class PlayerData : MonoBehaviour
 {
     public obstruction obs;
@@ -10,6 +11,7 @@ public class PlayerData : MonoBehaviour
     Color halpalpha = new Color(1, 1, 1, 0.5f);
     Color fullalpha = new Color(1, 1, 1, 1);
     private SpriteRenderer main_cha;
+    public GameObject panel;
    
     public void Start()
     {
@@ -41,6 +43,7 @@ public class PlayerData : MonoBehaviour
         obs.isPlaing = false;
         //Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<Animator>());
+        SceneManager.LoadScene("_MainTitle");
     }
 
     IEnumerator damaged()

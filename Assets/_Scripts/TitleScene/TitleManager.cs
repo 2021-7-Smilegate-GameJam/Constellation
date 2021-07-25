@@ -94,6 +94,10 @@ public class TitleManager : MonoBehaviour
         StartCoroutine(GamestartText());
     }
 
-
+    public void GameOver()
+    {
+        SceneManager.LoadScene("_MainTitle");
+        
+    }
 
 }
