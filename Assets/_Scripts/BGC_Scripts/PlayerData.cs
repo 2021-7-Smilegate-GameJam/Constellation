@@ -37,10 +37,10 @@ public class PlayerData : MonoBehaviour
     {
         //실패시 회전 멈추는 메서드
         //타일맵,및 오브젝트이동 정지
-        var planet = FindObjectOfType<PlanetButtonSet>();
-        Debug.Log(planet.name);
-        planet.StopRotate();
+        FindObjectOfType<PlanetButtonSet>().StopRotate();
         obs.isPlaing = false;
+        //Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<Animator>());
     }
 
     IEnumerator damaged()
