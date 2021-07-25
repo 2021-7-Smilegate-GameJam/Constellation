@@ -43,7 +43,7 @@ public class PlayerData : MonoBehaviour
         obs.isPlaing = false;
         //Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<Animator>());
-        SceneManager.LoadScene("_MainTitle");
+        SceneManager.LoadScene("GameOver");
     }
 
     IEnumerator damaged()
